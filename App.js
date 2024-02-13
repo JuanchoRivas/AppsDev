@@ -1,7 +1,6 @@
 import { useState,  } from "react";
 import { StatusBar } from "expo-status-bar";
 import Constants from 'expo-constants';
-import RemoveModal from "./src/components/RemoveModal";
 import { Text,
   Pressable, 
   View, 
@@ -9,9 +8,10 @@ import { Text,
   TextInput,  
   StyleSheet,
   FlatList,
-
+  Modal
 } from 'react-native';
 import cartLogo from "./assets/cart1.png";
+import RemoveModal from "./src/components/RemoveModal";
 
 const DATA = [
   {
@@ -31,38 +31,45 @@ const DATA = [
 export default function App() {
 
   const [counter, setCounter] = useState(0);
-  const[inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = useState("")
   const [cartItems, setCartItems] = useState([])
   const [modalVisible, setModalVisible] = useState(false);
-  const [itemSelected, setItemSelected] = useState(null);
+  const [itemSelected, setItemSelected] = useState(null); 
 
   const handleAddCounter = () => setCounter(counter + 1)
 
   const handleInputChange = (value) => setInputValue(value)
 
-  const handleModal = (id) => 
-    {setModalVisible(true);
-    setItemSelected(id)
+  const handleModal = (id) => {
+    setModalVisible(true);
+    setItemSelected(id);
     console.log(id);
-}
+  };
+
   const addItem = () => {
     const newItem = {
       name: inputValue,
       id: new Date().getTime()
-    }
+    };
     setCartItems([...cartItems, newItem])
   };
 
   const removeItem = () => {
-    const filteredArray = cartItems.filter((item) => item.id !== itemSelected);
+    const filteredArray = cartItems.filter((item)=> item.id !== itemSelected)
     setCartItems(filteredArray);
     setModalVisible(false)
-  }
+  };
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <RemoveModal />
+      <RemoveModal 
+        modalVisible={modalVisible}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        setModalVisible={setModalVisible}
+        itemSelected={itemSelected}
+      />
       <View style={{
         flexDirection: 'row', 
         justifyContent: 'center', 
@@ -90,10 +97,10 @@ export default function App() {
         <FlatList 
           data={cartItems}
           renderItem={({ item }) => (
-            <View style={{width: 400, flexDirection: 'row' }}>
+            <View style={{width: 400, flexDirection: 'row'}}>
               <Text style={styles.product}>{item.name}</Text>
               <Pressable onPress={()=> handleModal(item.id)}>
-                <Text style={{fontSize: 20}}>🚮</Text>
+                <Text style={{fontSize: 20, paddingLeft: 10}}>🚮</Text>
               </Pressable>
           </View>
           )}
@@ -128,6 +135,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+
   productList: {
     justifyContent: 'center', 
     alignItems: 'center', 
@@ -138,7 +146,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     justifyContent: 'center', 
     alignItems: 'center', 
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   inputStyles: {
     borderColor: 'gray', 

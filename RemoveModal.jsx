@@ -1,48 +1,34 @@
-import { Text,
-  Pressable, 
-  View, 
-  StyleSheet,
-  Modal
-} from 'react-native';
-import { useState,  } from "react";
-const RemoveModal = () =>{
+import { Text, Pressable, View, StyleSheet, Modal } from 'react-native';
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [counter, setCounter] = useState(0);
-  const [inputValue, setInputValue] = useState("")
-  const [cartItems, setCartItems] = useState([])
-  const [itemSelected, setItemSelected] = useState(null);
-
-
+const RemoveModal = ({
+  modalVisible,
+  cartItems,
+  setCartItems,
+  setModalVisible,
+  itemSelected,
+}) => {
   const removeItem = () => {
     const filteredArray = cartItems.filter((item) => item.id !== itemSelected);
     setCartItems(filteredArray);
-    setModalVisible(false)
-  }
-  
-
-  const handleModal = (id) => 
-    {setModalVisible(true);
-    setItemSelected(id)
-    console.log(id);
-}
-
-    return (
-      <Modal animationType="slide" transparent visible={modalVisible}>
-        <View style={styles.modalContainer}>
-          <Text>¿Quieres eliminar el Producto?</Text>
-          <Pressable onPress={() => setModalVisible(false)}>
-            <Text>No</Text>
-          </Pressable>
-          <Pressable onPress={removeItem}>
-            <Text>Sí</Text>
-          </Pressable>
-        </View>
-      </Modal>
-    );  
+    setModalVisible(false);
   };
 
-    export default RemoveModal;
+  return(
+  <Modal animationType="slide" transparent visible={modalVisible}>
+    <View style={styles.modalContainer}>
+      <Text>¿Quieres eliminar el producto?</Text>
+      <Pressable onPress={()=> setModalVisible(false)}>
+        <Text>No</Text>
+      </Pressable>
+      <Pressable onPress={removeItem}>
+        <Text>Sí</Text>
+      </Pressable>
+    </View>
+  </Modal>
+  );
+};
+
+export default RemoveModal;
 
     const styles = StyleSheet.create({
 
