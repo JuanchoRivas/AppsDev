@@ -5,8 +5,8 @@ const Card = ({children, style}) => {
     <View style={{...styles.container, ...style}}>
       {children}
     </View>
-  )
-}
+  );
+};
 
 export default Card;
 

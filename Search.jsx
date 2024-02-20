@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View, Pressable } from 'react-native'
+import { StyleSheet, TextInput, View, Pressable, setInput, input } from 'react-native'
 import { AntDesign } from "@expo/vector-icons";
 
-const Search = () => {
+
+
+const Search = (keyword, onSearch) => {
 
 
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
         <TextInput 
-          onChangeText={keyword}
+          onChangeText={setInput}
           value={input} 
           style={styles.input} 
           placeholder='Buscar producto...'
@@ -26,7 +28,11 @@ export default Search;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent : "space-between",
+    alignItems: "center",
+    width: '90%',
+    paddingTop: 10
   },
   input:  {
     borderRadius: 8,
