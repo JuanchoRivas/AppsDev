@@ -2,12 +2,12 @@ import { Text, View, StyleSheet } from "react-native";
 import Header from "../Header";
 import Categories from "../Categories";
 
-function Home ({setCategorySelected}) {
+
+function Home ({navigation}) {
     return (
-        <View style={styles.title}>
-            <Header title={'Inicio'}/>
-            <Categories setCategorySelected={setCategorySelected}/>
-            <Text>Inicio</Text>
+        <View style={styles.container}>
+            <Header title={"Inicio"}/>
+            <Categories navigation={navigation}/>
         </View>
     );
 }
@@ -15,9 +15,9 @@ function Home ({setCategorySelected}) {
 export default Home;
 
 const styles = StyleSheet.create({
-    title: {
+    container: {
         flex: 1,
-        textAlign: 'center',
-        fontFamily: 'InterBold'
+        width: '100%',
+        alignItems: 'center'
     }
 })

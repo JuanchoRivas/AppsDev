@@ -1,34 +1,51 @@
 import { useEffect, useState } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, StyleSheet, Text, Pressable } from "react-native";
 import allProducts from '../data/products.json'
 import ProductItem from "../ProductItem";
 import Search from "../Search";
 
-function ItemListCategories({category}) {
+function ItemListCategories({ navigation, route }) {
   const [products, setProducts] = useState([]);
   const [keyword, setKeyword] = useState("");
 
+  const {category} = route.params
 
   useEffect(()=> {
-    if(category) {
+    if (category) {
       const products = allProducts.filter((product)=> product.category === category);
       const filteredProducts = products.filter((product)=> 
         product.title.includes(keyword)
       );
       setProducts(filteredProducts)
+    } else {
+      const filteredProducts = allProducts.filter((product) =>
+        product.title.includes(keyword)
+        );
+        setProducts(filteredProducts);
     }
   }, [category, keyword]);
 
-
   return (
-    <View>
+    <View style={styles.container}>
       <Search keyword={keyword} onSearch={setKeyword}/>
       <FlatList 
         data={products}
         renderItem={({item})=> <ProductItem product={item}/>}
-        keyExtractor={(item)=> item.id}/>
+        keyExtractor={(item)=> item.id}
+        />
     </View>
   );
 }
 
 export default ItemListCategories;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    paddingHorizontal: 20,
+    justifyContent: "center",
+    alignItems:"center",
+    marginTop: '15%'
+  },
+})
