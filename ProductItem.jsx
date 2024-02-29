@@ -1,8 +1,9 @@
 import { StyleSheet,  Text, Image, useWindowDimensions, Pressable } from 'react-native'
 import Card from './Card';
 import { useEffect, useState } from "react";
+import { colors } from './Global/colors';
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, navigation }) => {
   const [isPortrait, setIsPortrait] = useState(true);
   const [isLandscape, setIsLandscape] = useState(false);
 
@@ -20,14 +21,14 @@ const ProductItem = ({ product }) => {
     }
   }, [width, height])
 
-    return (
+  return (
     <>
-      <Pressable onPress={()=> true}>
+      <Pressable onPress={()=> navigation.navigate("ItemDetail", {id: product.id})}>
         <Card 
           style={{
             marginVertical: 20, 
             flexDirection: 'row', 
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
             }}
           >
             <Text style={width < 400 ? styles.textMin : styles.text}>{product.title}</Text>
@@ -41,17 +42,33 @@ const ProductItem = ({ product }) => {
 export default ProductItem;
 
 const styles = StyleSheet.create({
+  card:{
+    height: 100,
+    backgroundColor: colors.blue_300,
+    padding: 20,
+    margin: 15,
+    borderWidth: 2,
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 4
+  },
+  image: {
+    minHeight: 90,
+    minWidth: 90,
+    width: '30%',
+    borderRadius: 5,
+  },
   text: {
+    width: '70%',
+    fontFamily: 'InterBold',
     fontSize: 20,
-    width: '70%'
-    },
-    textMin: {
-      fontSize: 14,
-      width: '70%'
-    },
-    image: {
-      width: 70,
-      height: 70,
-
-    }
+  },
+  textMin: {
+    fontSize: 15,
+    width: "70%",
+    color: colors.blue_200,
+    fontFamily: 'InterBold',
+  },
 });

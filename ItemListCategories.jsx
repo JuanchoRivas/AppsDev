@@ -8,7 +8,7 @@ function ItemListCategories({ navigation, route }) {
   const [products, setProducts] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  const {category} = route.params
+  const { category } = route.params;
 
   useEffect(()=> {
     if (category) {
@@ -30,7 +30,7 @@ function ItemListCategories({ navigation, route }) {
       <Search keyword={keyword} onSearch={setKeyword}/>
       <FlatList 
         data={products}
-        renderItem={({item})=> <ProductItem product={item}/>}
+        renderItem={({item})=> <ProductItem product={item} navigation={navigation}/>}
         keyExtractor={(item)=> item.id}
         />
     </View>
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 20,
     justifyContent: "center",
-    alignItems:"center",
-    marginTop: '15%'
+    alignItems: "center",
   },
 })
