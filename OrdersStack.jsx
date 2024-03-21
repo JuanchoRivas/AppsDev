@@ -1,6 +1,6 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import Orders from '../Screens/Orders';
-import Header from "../Header";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Orders from '../src/components/Screens/Orders';
+import Header from "../src/components/Header";
 
 const Stack = createNativeStackNavigator();
 
