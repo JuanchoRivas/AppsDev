@@ -1,2 +1,2 @@
 export const base_auth_url = "https://identitytoolkit.googleapis.com/v1/"
-export const api_ley= "AIzaSyCXlEWkMRbyX4cLNBfugDndwEQFNgXgDSQ"
+export const api_key = "AIzaSyCXlEWkMRbyX4cLNBfugDndwEQFNgXgDSQ"
