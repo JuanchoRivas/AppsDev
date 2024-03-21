@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import InputForm from '../InputForm';
-import { useSignUpMutation } from '../../services/shopService';
+import { useSignUpMutation } from '../../services/authService';
 import SubmitButton from '../SubmitButton';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../features/auth/authSlice';
 import { signupSchema } from '../../validations/signupSchema';
+
 
 const Signup = () => {
   const [email, setEmail] = useState("");

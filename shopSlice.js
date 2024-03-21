@@ -2,7 +2,6 @@ import {createSlice} from "@reduxjs/toolkit";
 import allProducts from '../../data/products.json';
 import allCategories from "../../data/categories.json";
 
-
 export const shopSlice = createSlice({
   name: "shop",
   initialState: {

@@ -5,7 +5,6 @@ import { colors } from '../Global/colors';
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/shop/cartSlice";
 
-
 const ItemDetail = ({ navigation, route }) => {
   const [product, setProduct] = useState(null);
 
