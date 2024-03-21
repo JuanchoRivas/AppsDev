@@ -1,0 +1,1 @@
+export const base_url = "https://desarrollo-de-apps-61300-69d79-default-rtdb.firebaseio.com/"
