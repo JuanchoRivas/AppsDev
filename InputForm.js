@@ -1,30 +1,28 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import React, { useState } from "react";
+import React, {useState}from 'react';
 import { colors } from './Global/colors';
 
-const InputForm = ({ label, error, onChange, isSecure }) => {
-  const [input, setInput] = useState("");
+
+const InputForm = ({label, error, onChange, isSecure}) => {
+  const [input, setInput] = useState("")
 
   const onChangeText = (text) => {
     setInput(text);
-    onChange(text);
-  };
+    onChange(text)
+  }
 
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.subtitle}>{label}</Text>
-      <TextInput
-        style={styles.input}
-        value={input}
-        onChangeText={onChangeText}
-        secureTextEntry={isSecure}
+      <TextInput style={styles.input} value={input} onChangeText={onChangeText} 
+      secureTextEntry={isSecure}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 };
 
-export default InputForm;
+export default InputForm
 
 const styles = StyleSheet.create({
   inputContainer: {

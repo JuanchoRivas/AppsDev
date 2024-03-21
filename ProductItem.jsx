@@ -31,7 +31,7 @@ const ProductItem = ({ product, navigation }) => {
             justifyContent: "space-between",
           }}
         >
-          <Text style={width < 350 ? styles.textMin : styles.text}>{product.title}</Text>
+          <Text style={width < 412 ? styles.textMin : styles.text}>{product.title}</Text>
           <Image
             style={styles.image}
             resizeMode="cover"
